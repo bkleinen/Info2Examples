@@ -1,0 +1,3 @@
+class AClass{
+	ArrayList myStrings;
+}
