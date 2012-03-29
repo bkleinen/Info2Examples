@@ -1,3 +1,3 @@
 class AClass{
-	ArrayList myStrings;
+	HashMap myStrings;
 }
