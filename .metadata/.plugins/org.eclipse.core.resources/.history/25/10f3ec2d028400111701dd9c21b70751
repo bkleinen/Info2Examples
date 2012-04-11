@@ -1,0 +1,29 @@
+package info2.gcd;
+
+public class GCD {
+	public int euclid1(int n1, int n2) {
+		int m1 = n1;
+		int m2 = n2;
+		while (m1 != m2) {
+			if (m1 > m2) {
+				m1 = m1 - m2;
+			} else {
+				m2 = m2 - m1;
+			}
+		}
+		return m1;
+	}
+	public int euclid2 (int n1, int n2){
+
+	    if (n1 > n2) {
+	       return euclid2 (n1-n2, n2);
+	    } 
+	    else 
+	    if (n2 > n1) {
+	       return euclid2 (n1, n2-n1);
+	    } 
+	    else { // n1==n2
+	       return n1;
+	    }
+	}
+}

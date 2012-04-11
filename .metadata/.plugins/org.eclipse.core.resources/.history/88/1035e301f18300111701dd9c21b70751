@@ -1,0 +1,21 @@
+package info2.staticsearching;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class SearchElementTest {
+	SearchElement<Integer> searcher = new SearchElement<Integer>();
+
+	@Test
+	public void testBruteForce() {
+		Integer[] a1 = {1,2};
+		assertEquals(-1,searcher.bruteForce(0,a1));
+	}
+
+	@Test
+	public void testBinarySearch() {
+		fail("Not yet implemented");
+	}
+
+}

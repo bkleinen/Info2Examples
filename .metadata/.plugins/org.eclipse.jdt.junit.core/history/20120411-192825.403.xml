@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="MCSSTest.testBruteForce" project="Complexity" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testcase name="testBruteForce" classname="subsequence.MCSSTest" incomplete="true"/>
+  <testsuite name="Unrooted Tests" time="0.0">
+    <testcase name="initializationError" classname="subsequence.MCSSTest" time="0.0">
+      <error>java.lang.Exception: No runnable methods
+	at org.junit.runners.BlockJUnit4ClassRunner.validateInstanceMethods(BlockJUnit4ClassRunner.java:177)
+	at org.junit.runners.BlockJUnit4ClassRunner.collectInitializationErrors(BlockJUnit4ClassRunner.java:122)
+	at org.junit.runners.ParentRunner.validate(ParentRunner.java:269)
+	at org.junit.runners.ParentRunner.&lt;init&gt;(ParentRunner.java:66)
+	at org.junit.runners.BlockJUnit4ClassRunner.&lt;init&gt;(BlockJUnit4ClassRunner.java:58)
+	at org.junit.runners.Parameterized$TestClassRunnerForParameters.&lt;init&gt;(Parameterized.java:79)
+	at org.junit.runners.Parameterized.&lt;init&gt;(Parameterized.java:132)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:525)
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:31)
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:24)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:57)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:29)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:57)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:24)
+	at org.junit.internal.requests.FilterRequest.getRunner(FilterRequest.java:33)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.&lt;init&gt;(JUnit4TestReference.java:33)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestMethodReference.&lt;init&gt;(JUnit4TestMethodReference.java:25)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.createTest(JUnit4TestLoader.java:54)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.loadTests(JUnit4TestLoader.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:452)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

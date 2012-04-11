@@ -1,0 +1,28 @@
+package subsequence;
+
+import static org.junit.Assert.fail;
+import info2.subsequence.MCSS;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+@RunWith(Parameterized.class)
+public class MCSSTest {
+	static MCSS mcss = new MCSS();
+	@Parameters
+	public static Collection<Object[]> data() {
+		Object[][] data = new Object[][] { { new mcss.ResultSet(0,0,0),new Integer[] { 1, 2 } }};
+		return Arrays.asList(data);
+	}
+
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="Rerun info2.staticsearching.SearchElementTest.testBruteForce[1]" project="Complexity" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="testBruteForce[1]" classname="info2.staticsearching.SearchElementTest" time="6.422"/>
+</testrun>
