@@ -31,7 +31,7 @@ public class GCD {
 				return i;
 			}
 		}
-		return -1; 
+		return 0; // slightly modified to be consistent with the others!
 	}
 
 	public int strange(int n1, int n2) {
