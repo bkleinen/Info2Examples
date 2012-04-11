@@ -1,5 +1,0 @@
-INDEX VERSION 1.126+/Users/kleinen/Dropbox/ss2012/info2/code/Info2Examples/.metadata/.plugins/org.eclipse.jdt.core
-2982688190.index
-670631150.index
-294552443.index
-2328979392.index
