@@ -15,7 +15,8 @@ public class GCDTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { { 12, 6, 6 },{ 1, 2, 1 },
-				{ 8, 12, 4 }, { 1, 1, 1 }, { 48, 36, 12 }, { 36, 48, 12 } });
+				{ 8, 12, 4 }, { 1, 1, 1 }, { 48, 36, 12 }, { 36, 48, 12 }
+				,{884, 3009,17}});
 
 	}
 

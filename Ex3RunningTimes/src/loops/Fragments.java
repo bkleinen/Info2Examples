@@ -11,7 +11,7 @@ public class Fragments {
 	}
 
 	public int f1(int n) {
-		return 0;
+		return n;
 	}
 
 	public int fragment2(int n) {

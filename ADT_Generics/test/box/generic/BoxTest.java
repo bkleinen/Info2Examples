@@ -13,6 +13,7 @@ public class BoxTest {
 
 	@Test
 	public void testGet() {
+		// integerBox.add("hallo");
 		 integerBox.add(new Integer(10));
 	     // no cast necessary!
 	        Integer someInteger = integerBox.get(); 
