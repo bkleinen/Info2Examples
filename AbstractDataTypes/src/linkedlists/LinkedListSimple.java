@@ -82,4 +82,5 @@ public class LinkedListSimple<E extends Comparable<E>> implements LinkedList<E> 
 		n.next = n.next.next;
 		return result.data;
 	}
+	
 }
