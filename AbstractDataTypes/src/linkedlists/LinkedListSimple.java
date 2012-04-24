@@ -1,5 +1,7 @@
 package linkedlists;
 
+import java.util.Iterator;
+
 public class LinkedListSimple<E extends Comparable<E>> implements LinkedList<E> {
 	int size = 0;
 	Node<E> first = null;
@@ -78,9 +80,43 @@ public class LinkedListSimple<E extends Comparable<E>> implements LinkedList<E> 
 		while ((n.next != null) && (n.next.data.compareTo(data) != 0))
 			n = n.next;
 		if (n.next == null) return null;
+		return removeNext(n);
+	}
+	@Override
+	public E remove(Node<E> node){
+		if (first == null)
+			return null;
+		if (first == node){
+			Node<E> result = first;
+			first = first.next;
+			return result.data;
+		}
+		Node<E> n = first;
+			
+		while ((n.next != null) && (n.next != node))
+			n = n.next;
+		if (n.next == null) return null;
+		return removeNext(n);
+	}
+	@Override
+	public Iterator<E> iterator() {
+		return new LinkedListIterator<E>(this);
+	}
+	@Override
+	public Node<E> getFirstNode() {
+		return first;
+	}
+	@Override
+	public boolean isLastNodeReached(Node<? extends E> node){
+		return node == null;
+	}
+
+
+	public E removeNext(Node<E> n) {
 		Node<E> result = n.next;
 		n.next = n.next.next;
 		return result.data;
+		
 	}
 	
 }

@@ -25,7 +25,7 @@ public class LinkedListTest<E> {
 		abstract LinkedList<String> createList();
 	}
 
-	Factory factory;
+	public Factory factory;
 	LinkedList<String> list;
 
 	public LinkedListTest(Factory factory) {
