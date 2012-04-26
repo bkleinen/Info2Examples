@@ -66,7 +66,7 @@ public class JulianDateConversion {
 	@Test
 	public void testGregorianToJD() {
 		julianDate.setDate(day, month, year, hour, minute);
-		assertEquals(toString(), jd, julianDate.getJD(),0.00001);
+		assertEquals(toString(), jd, julianDate.getJD(),0.0001);
 	}
 
 	public String toString() {
