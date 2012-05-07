@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Calculator()
+comment0.text=\nCreate\ a\ new\ calculator\ and\ show\ it.\n\n
+comment1.target=void\ show()
+comment1.text=\nIn\ case\ the\ window\ was\ closed,\ show\ it\ again.\n\n
+numComments=2
