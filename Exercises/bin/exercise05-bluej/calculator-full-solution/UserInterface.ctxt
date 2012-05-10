@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=engine
+comment0.target=UserInterface(CalcEngine)
+comment0.text=\nCreate\ a\ user\ interface.\n@param\ engine\ The\ calculator\ engine.\n\n
+comment1.params=visible
+comment1.target=void\ setVisible(boolean)
+comment1.text=\nSet\ the\ visibility\ of\ the\ interface.\n@param\ visible\ true\ if\ the\ interface\ is\ to\ be\ made\ visible,\ false\ otherwise.\n\n
+comment2.target=void\ makeFrame()
+comment2.text=\nMake\ the\ frame\ for\ the\ user\ interface.\n\n
+comment3.params=panel\ buttonText
+comment3.target=void\ addButton(Container,\ String)
+comment3.text=\nAdd\ a\ button\ to\ the\ button\ panel.\n@param\ panel\ The\ panel\ to\ receive\ the\ button.\n@param\ buttonText\ The\ text\ for\ the\ button.\n\n
+comment4.params=event
+comment4.target=void\ actionPerformed(ActionEvent)
+comment4.text=\nAn\ interface\ action\ has\ been\ performed.\nFind\ out\ what\ it\ was\ and\ handle\ it.\n@param\ event\ The\ event\ that\ has\ occured.\n\n
+comment5.target=void\ redisplay()
+comment5.text=\nUpdate\ the\ interface\ display\ to\ show\ the\ current\ value\ of\ the\ \ncalculator.\n\n
+comment6.target=void\ showInfo()
+comment6.text=\nToggle\ the\ info\ display\ in\ the\ calculator's\ status\ area\ between\ the\nauthor\ and\ version\ information.\n\n
+numComments=7

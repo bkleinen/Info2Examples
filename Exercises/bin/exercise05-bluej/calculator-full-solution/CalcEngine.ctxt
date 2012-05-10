@@ -1,0 +1,30 @@
+#BlueJ class context
+comment0.target=CalcEngine()
+comment0.text=\nCreate\ a\ CalcEngine.\n\n
+comment1.target=int\ getDisplayValue()
+comment1.text=\n@return\ The\ value\ that\ should\ currently\ be\ displayed\non\ the\ calculator\ display.\n\n
+comment10.target=void\ calculateResult()
+comment10.text=\nCombine\ leftOperand,\ lastOperator,\ and\ the\ncurrent\ display\ value.\nThe\ result\ becomes\ both\ the\ leftOperand\ and\nthe\ new\ display\ value.\n\n
+comment11.params=operator
+comment11.target=void\ applyOperator(char)
+comment11.text=\nApply\ an\ operator.\n@param\ operator\ The\ operator\ to\ apply.\n\n
+comment12.target=void\ keySequenceError()
+comment12.text=\nReport\ an\ error\ in\ the\ sequence\ of\ keys\ that\ was\ pressed.\n\n
+comment2.params=number
+comment2.target=void\ numberPressed(int)
+comment2.text=\nA\ number\ button\ was\ pressed.\nEither\ start\ a\ new\ operand,\ or\ incorporate\ this\ number\ as\nthe\ least\ significant\ digit\ of\ an\ existing\ one.\n@param\ number\ The\ number\ pressed\ on\ the\ calculator.\n\n
+comment3.target=void\ plus()
+comment3.text=\nThe\ 'plus'\ button\ was\ pressed.\ \n\n
+comment4.target=void\ minus()
+comment4.text=\nThe\ 'minus'\ button\ was\ pressed.\n\n
+comment5.target=void\ equals()
+comment5.text=\nThe\ '\='\ button\ was\ pressed.\n\n
+comment6.target=void\ clear()
+comment6.text=\nThe\ 'C'\ (clear)\ button\ was\ pressed.\nReset\ everything\ to\ a\ starting\ state.\n\n
+comment7.target=String\ getTitle()
+comment7.text=\n@return\ The\ title\ of\ this\ calculation\ engine.\n\n
+comment8.target=String\ getAuthor()
+comment8.text=\n@return\ The\ author\ of\ this\ engine.\n\n
+comment9.target=String\ getVersion()
+comment9.text=\n@return\ The\ version\ number\ of\ this\ engine.\n\n
+numComments=13

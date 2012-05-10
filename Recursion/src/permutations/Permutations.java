@@ -17,8 +17,8 @@ public class Permutations {
 	}
 
 	public void compute(String prefix, String rest, List<String> result) {
-		if (rest.length() == 0) {
-			result.add(prefix);
+		if (rest.length() == 1) {
+			result.add(rest+prefix);
 		}
 		for (int i = 0; i < rest.length(); i++) {
 			compute(prefix + rest.charAt(i), without(rest, i), result);
