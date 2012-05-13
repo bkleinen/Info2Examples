@@ -8,15 +8,10 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-
-import linkedlists.LinkedList;
-import linkedlists.LinkedListDummyNode;
-import linkedlists.LinkedListSimple;
 
 @RunWith(Parameterized.class)
 public class LinkedListTest<E> {
@@ -74,109 +69,56 @@ public class LinkedListTest<E> {
 	public void testAppend2() {
 		list.appendFirst("a");
 		list.appendFirst("b");
+		assertEquals("b", list.removeFirst());
 		assertEquals("a", list.removeLast());
-		assertEquals("b", list.removeLast());
 		assertTrue(list.isEmpty());
 	}
 
-	@Ignore
-	public void testEqualsStringArrayEmpty() {
-		LinkedListSimple<String> list = new LinkedListSimple<String>();
-		String[] empty = {};
-		assertTrue(list.equals(empty));
+	@Test
+	public void testAppendFirst() {
+		list.appendFirst("x");
+		list.appendFirst("first");
+		assertEquals("(first, x)", list.toString());
 	}
 
-	@Ignore
-	public void testEqualsStringArrayOne() {
-		list.appendFirst("a");
-		String[] one = { "a" };
-		assertTrue(list.equals(one));
+	@Test
+	public void testAppendLast() {
+		list.appendFirst("x");
+		list.appendLast("last");
+		assertEquals("(x, last)", list.toString());
 	}
 
 	@Test
 	public void testInsert() {
-		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("d");
-		list.appendFirst("e");
+		list.appendLast("a");
+		list.appendLast("b");
+		list.appendLast("d");
+		list.appendLast("e");
 		list.insert("c");
-
-		assertEquals("a", list.removeLast());
-		assertEquals("b", list.removeLast());
-		assertEquals("c", list.removeLast());
-		assertEquals("d", list.removeLast());
-		assertEquals("e", list.removeLast());
-
-	}
-
-	@Test
-	public void testInsertFirst() {
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
-
-		list.insert("a");
-
-		assertEquals("a", list.removeLast());
-		assertEquals("b", list.removeLast());
-		assertEquals("c", list.removeLast());
-		assertEquals("d", list.removeLast());
-		assertTrue(list.isEmpty());
-
-	}
-
-	@Test
-	public void testInsertEnd() {
-		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
-		list.insert("e");
-
-		assertEquals("a", list.removeLast());
-		assertEquals("b", list.removeLast());
-		assertEquals("c", list.removeLast());
-		assertEquals("d", list.removeLast());
-		assertEquals("e", list.removeLast());
-
-	}
-
-	@Test
-	public void testRemove() {
-		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
-
-		list.remove("b");
-
-		assertEquals("a", list.removeLast());
-		assertEquals("c", list.removeLast());
-		assertEquals("d", list.removeLast());
-		assertTrue(list.isEmpty());
+		assertEquals("(a, b, c, d, e)", list.toString());
 	}
 
 	@Test
 	public void testRemoveFirst() {
-		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
-
-		list.remove("a");
-
-		assertEquals("b", list.removeLast());
-		assertEquals("c", list.removeLast());
-		assertEquals("d", list.removeLast());
-		assertTrue(list.isEmpty());
+		list.appendLast("a");
+		list.appendLast("b");
+		list.appendLast("c");
+		list.appendLast("d");
+		list.appendLast("e");
+		assertEquals("(a, b, c, d, e)", list.toString());
+		assertEquals("a", list.removeFirst());
+		assertEquals("b", list.removeFirst());
+		assertEquals("c", list.removeFirst());
+		assertEquals("d", list.removeFirst());
+		assertEquals("e", list.removeFirst());
 	}
 
 	@Test
 	public void testRemoveLast() {
 		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
+		list.appendLast("b");
+		list.appendLast("c");
+		list.appendLast("d");
 
 		list.remove("d");
 
@@ -187,12 +129,34 @@ public class LinkedListTest<E> {
 	}
 
 	@Test
+	public void testRemove() {
+		list.appendFirst("a");
+		list.appendLast("b");
+		list.appendLast("c");
+		list.appendLast("d");
+
+		list.remove("b");
+
+		assertEquals("a", list.removeFirst());
+		assertEquals("c", list.removeFirst());
+		assertEquals("d", list.removeFirst());
+		assertTrue(list.isEmpty());
+	}
+
+	@Test
 	public void testToString() {
 		list.appendFirst("a");
 		list.appendFirst("b");
 		list.appendFirst("c");
 		list.appendFirst("d");
 		list.appendFirst("e");
-		assertEquals("(a, b, c, d, e)", list.toString());
+		assertEquals("(e, d, c, b, a)", list.toString());
+	}
+	@Test
+	public void testPeek(){
+		list.appendFirst("b");
+		list.appendFirst("a");
+		assertEquals("a",list.peek());
+		assertEquals("a",list.removeFirst());	
 	}
 }

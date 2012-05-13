@@ -1,8 +1,5 @@
 package linkedlists;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.fail;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -11,6 +8,7 @@ import linkedlists.LinkedListTest.Factory;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -42,18 +40,16 @@ public class LinkedListIteratorTest {
 	@Before
 	public void setUp() {
 		list = factory.createList();
-		list.appendFirst("a");
-		list.appendFirst("b");
-		list.appendFirst("c");
-		list.appendFirst("d");
-		list.appendFirst("e");
+		list.appendLast("a");
+		list.appendLast("b");
+		list.appendLast("c");
+		list.appendLast("d");
+		list.appendLast("e");
 		iterator = list.iterator();
-
 	}
 
 	@Test
 	public void testHasNext_next() {
-	
 		assertEquals("a", iterator.next());
 		assertEquals("b", iterator.next());
 		assertEquals("c", iterator.next());

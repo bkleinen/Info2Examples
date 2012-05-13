@@ -4,19 +4,31 @@ import java.util.Iterator;
 
 public class LinkedListDummyNode<E extends Comparable<E>> implements
 		LinkedList<E> {
-	int size = 0;
-	Node<E> first = new Node<E>(null);
+	Node<E> first = null;
 
 	public LinkedListDummyNode() {
+		first = new Node<E>(null);
 		first.next = first;
 	}
 
 	@Override
 	public void appendFirst(E s) {
-		append(new Node<E>(s));
+		appendFirst(new Node<E>(s));
 	}
 
-	public void append(Node<E> node) {
+	private void appendFirst(Node<E> node) {
+		Node<E> second = first.next;
+		first.next = node;
+		node.next = second;
+	}
+
+	@Override
+	public void appendLast(E s) {
+		appendLast(new Node<E>(s));
+
+	}
+
+	public void appendLast(Node<E> node) {
 		Node<E> n = first;
 		while (n.next != first) {
 			n = n.next;
@@ -57,6 +69,7 @@ public class LinkedListDummyNode<E extends Comparable<E>> implements
 		first.next = first.next.next;
 		return result.data;
 	}
+
 	@Override
 	public E remove(Node<E> node) {
 		Node<E> n = first;
@@ -66,6 +79,7 @@ public class LinkedListDummyNode<E extends Comparable<E>> implements
 			return null;
 		return removeNext(n);
 	}
+
 	public E remove(E data) {
 		Node<E> n = first;
 		while ((n.next != first) && (n.next.data.compareTo(data) != 0))
@@ -90,13 +104,23 @@ public class LinkedListDummyNode<E extends Comparable<E>> implements
 		return node == first;
 	}
 
-
 	public E removeNext(Node<E> n) {
 
 		Node<E> result = n.next;
 		n.next = n.next.next;
 		return result.data;
 
+	}
+
+	@Override
+	public E removeFirst() {
+		return removeNext(first);
+
+	}
+
+	@Override
+	public E peek() {
+		return first.next.getData();
 	}
 
 }

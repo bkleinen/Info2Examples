@@ -9,4 +9,7 @@ public class Node<E> {
 	public String toString(){
 		return data.toString();
 	}
+	E getData(){
+		return data;
+	}
 }
