@@ -43,6 +43,7 @@ import errorhandling.Underflow;
  * @see queue.ArrayQueue
  *
  */
+@RunWith(Parameterized.class)
 public class QueueTest {
 	static abstract class Factory {
 		abstract Queue<String> create();

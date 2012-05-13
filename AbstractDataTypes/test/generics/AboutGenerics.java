@@ -10,10 +10,6 @@ import org.junit.Test;
 
 public class AboutGenerics {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 
 	// Wildcards
 	void printCollection(Collection<?> c) {
