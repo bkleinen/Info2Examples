@@ -1,5 +1,9 @@
 package tree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 /**
  * Simple Binary Search Tree Implementation. Algorithms are adaptations of those
  * in Cormen, Leiserson, and Rivest's <em>Introduction to Algorithms.
@@ -9,10 +13,16 @@ package tree;
  * @param <K>
  * @param <V>
  */
-public class Tree<K extends Comparable<K>, V> {
+public class Tree<K extends Comparable<K>, V> implements Iterable<K> {
 	private static final String DELIM = ", ";
-	private Node root;
+	protected Node root;
 
+	/**
+	 * 
+	 * Entry/Node in the Tree. Could be extended to implement Map.Entry<K,V>
+	 * 
+	 * @see java.util.Map.Entry
+	 */
 	public class Node {
 		K key;
 		V value;
@@ -29,6 +39,49 @@ public class Tree<K extends Comparable<K>, V> {
 			return "(" + key.toString() + ","
 					+ ((leftChild == null) ? "" : leftChild.toString()) + ","
 					+ ((rightChild == null) ? "" : rightChild.toString()) + ")";
+		}
+
+		public String toStringBalanceFactor() {
+			return "("
+					+ key.toString()
+					+ "["
+					+ balanceFactor
+					+ "],"
+					+ ((leftChild == null) ? "" : leftChild
+							.toStringBalanceFactor())
+					+ ","
+					+ ((rightChild == null) ? "" : rightChild
+							.toStringBalanceFactor()) + ")";
+		}
+
+		public int size() {
+			int l = 0, r = 0;
+			if (leftChild != null)
+				l = leftChild.size();
+			if (rightChild != null)
+				r = rightChild.size();
+			return l + 1 + r;
+
+		}
+
+		public int height() {
+			int lh = -1, rh = -1;
+			if (leftChild != null)
+				lh = 1 + leftChild.height();
+			if (rightChild != null)
+				rh = 1 + rightChild.height();
+			return Math.max(lh, rh);
+		}
+
+		int balanceFactor;
+
+		public int computeBalanceFactor() {
+			int lh = -1, rh = -1;
+			if (leftChild != null)
+				lh = 1 + leftChild.height();
+			if (rightChild != null)
+				rh = 1 + rightChild.height();
+			return balanceFactor = lh - rh;
 		}
 	}
 
@@ -67,18 +120,18 @@ public class Tree<K extends Comparable<K>, V> {
 		}
 	}
 
-	public void insert(K key) {
-		insert(key, null);
+	public Node insert(K key) {
+		return insert(key, null);
 	}
 
-	public void insert(K key, V value) {
-		insert(new Node(key, value));
+	public Node insert(K key, V value) {
+		return insert(new Node(key, value));
 	}
 
-	public void insert(Node node) {
+	public Node insert(Node node) {
 		if (root == null) {
 			root = node;
-			return;
+			return node;
 		}
 		Node current = root, parent = null;
 		while (current != null) {
@@ -97,6 +150,7 @@ public class Tree<K extends Comparable<K>, V> {
 				}
 			}
 		}
+		return node;
 	}
 
 	public boolean isEmpty() {
@@ -122,34 +176,53 @@ public class Tree<K extends Comparable<K>, V> {
 					+ traverseInOrderToString(node.rightChild);
 	}
 
-	public Node delete(K key) {
+	public List<Node> delete(K key) {
+		List<Node> rebalance = new ArrayList<Node>();
+
 		Node node = find(key);
 		if (node == null)
 			return null;
 		if (node.leftChild == null) {
-			if (node.parent.leftChild == node)
+			if (node.parent == null)
+				root = node.rightChild;
+			else if (node.parent.leftChild == node)
 				node.parent.leftChild = node.rightChild;
 			else
 				node.parent.rightChild = node.rightChild;
-			return node;
+			if (node.rightChild != null)
+				node.rightChild.parent = node.parent;
+			rebalance.add(node.rightChild == null ? node.parent
+					: node.rightChild);
+			return rebalance;
 		}
 		if (node.rightChild == null) {
-			if (node.parent.leftChild == node)
+			if (node.parent == null)
+				root = node.leftChild;
+			else if (node.parent.leftChild == node)
 				node.parent.leftChild = node.leftChild;
 			else
 				node.parent.rightChild = node.leftChild;
-			return node;
+			if (node.leftChild != null)
+				node.leftChild.parent = node.parent;
+			rebalance.add(node.leftChild);
+			return rebalance;
 		}
 		// node has 2 childs.
 		Node succ = successor(node);
 		if (succ == node.rightChild) {
 			transplant(node, succ);
 			succ.leftChild = node.leftChild;
+			succ.leftChild.parent = succ;
 		} else {
+			if (succ.rightChild == null)
+				rebalance.add(succ.parent);
+			else
+				rebalance.add(succ.rightChild);
 			transplant(succ, succ.rightChild);
 			replace(node, succ);
 		}
-		return node;
+		rebalance.add(succ);
+		return rebalance;
 	}
 
 	public Node successor(K key) {
@@ -210,14 +283,17 @@ public class Tree<K extends Comparable<K>, V> {
 	 * @param b
 	 */
 	public void transplant(Node a, Node b) {
-		if (a.parent == null)
+		if (a.parent == null) {
 			root = b;
-		else {
+			if (b != null)
+				b.parent = null;
+		} else {
 			if (b != null) {
 				if (b == b.parent.leftChild)
 					b.parent.leftChild = null;
 				else
 					b.parent.rightChild = null;
+
 				b.parent = a.parent;
 			}
 			if (a == a.parent.leftChild)
@@ -226,6 +302,7 @@ public class Tree<K extends Comparable<K>, V> {
 				a.parent.rightChild = b;
 			a.parent = null;
 		}
+
 	}
 
 	/**
@@ -246,7 +323,98 @@ public class Tree<K extends Comparable<K>, V> {
 		b.parent = a.parent;
 		a.parent = null;
 		b.leftChild = a.leftChild;
+		if (b.leftChild != null)
+			b.leftChild.parent = b;
+		b.leftChild.parent = b;
 		b.rightChild = a.rightChild;
+		if (b.rightChild != null)
+			b.rightChild.parent = b;
+	}
+
+	public int size() {
+		if (root == null)
+			return 0;
+		return root.size();
+	}
+
+	public enum Cursor {
+		LEFT, THIS, RIGHT, DONE
+	};
+
+	public class Iterator implements java.util.Iterator<K> {
+		private Cursor c;
+		private Node node;
+		private Node max;
+
+		public Iterator(Node node) {
+			if (node == null)
+				c = Cursor.RIGHT;
+			else {
+				this.node = node;
+				this.c = Cursor.LEFT;
+				max = node;
+				while (max.rightChild != null)
+					max = max.rightChild;
+			}
+
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !((node == max) && c == Cursor.RIGHT);
+		}
+
+		@Override
+		public K next() {
+			switch (c) {
+			case LEFT:
+				if (node.leftChild == null) {
+					c = Cursor.THIS;
+					return next();
+				} else {
+					node = node.leftChild;
+					return next();
+				}
+			case THIS:
+				c = Cursor.RIGHT;
+				return node.key;
+
+			case RIGHT:
+				if (node.rightChild == null) {
+					c = Cursor.DONE;
+					return next();
+				} else {
+					c = Cursor.LEFT;
+					node = node.rightChild;
+					return next();
+				}
+			case DONE:
+				if (node.parent == null)
+					throw new NoSuchElementException();
+				else {
+					if (node.parent.leftChild == node)
+						c = Cursor.THIS;
+					else
+						c = Cursor.DONE;
+				}
+				node = node.parent;
+				return next();
+			}
+			// should never reach this;
+			throw new NoSuchElementException();
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+
+		}
+
+	}
+
+	@Override
+	public java.util.Iterator<K> iterator() {
+		return this.new Iterator(root);
 	}
 
 }
