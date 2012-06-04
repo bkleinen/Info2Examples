@@ -274,21 +274,22 @@ public class AVLTreeTest {
 		assertTrue(it.isBalanced());
 
 	}
+
 	/**
-	 * java.lang.AssertionError: tree size: 22 [73, 30, 78, 34, 16, 65, 46, 22, 67, 15, 71, 47, 24, 89, 55, 84, 77, 27, 99, 51, 29]
-after removal of, 34
-(((15-16-)-22-(24-27-(29-30-)))-46-((-47-(51-55-65))-67-((71-73-77)-78-(84-89-99))))
-
-
+	 * java.lang.AssertionError: tree size: 22 [73, 30, 78, 34, 16, 65, 46, 22,
+	 * 67, 15, 71, 47, 24, 89, 55, 84, 77, 27, 99, 51, 29] after removal of, 34
+	 * (((15-16-)-22-(24-27-(29-30-)))-46-((-47-(51-55-65))-67-((71-73-77)-78-(
+	 * 84-89-99))))
 	 */
 	@Test
 	public void testDelete22b() {
-		Integer[] values = { 73, 30, 78, 34, 16, 65, 46, 22, 67, 15, 71, 47, 24, 89, 55, 84, 77, 27, 99, 51, 29};
+		Integer[] values = { 73, 30, 78, 34, 16, 65, 46, 22, 67, 15, 71, 47,
+				24, 89, 55, 84, 77, 27, 99, 51, 29 };
 		AVLTree<Integer, Object> it = new AVLTree<Integer, Object>();
 		for (int i = 0; i < values.length; i++)
 			it.insert(values[i]);
-		it.computeAllBalanceFactors();		
-			// when
+		it.computeAllBalanceFactors();
+		// when
 		it.delete(34);
 		// then
 		it.computeAllBalanceFactors();
@@ -296,4 +297,14 @@ after removal of, 34
 
 	}
 
+	@Test
+public void classRoomExample(){
+	
+	Integer[] values = {10, 40, 35, 25, 60, 30, 80, 50, 27, 28, 38};
+	AVLTree<Integer, Object> it = new AVLTree<Integer, Object>();
+	for (int i = 0; i < values.length; i++)
+		it.insert(values[i]);
+	assertEquals("((10-25-(27-28-30))-35-((38-40-50)-60-80))",it.toStringTree());
+
+}
 }

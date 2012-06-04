@@ -27,17 +27,21 @@ public class AVLTree<K extends Comparable<K>, V> extends Tree<K, V> {
 			rebalanceAfterDelete(n);
 		return checkOn;
 	}
-
+/**
+ * algorithm from http://en.wikipedia.org/wiki/AVL_tree
+ * balanceFactor = leftHeight - rightHeight
+ * @param n
+ */
 	public void rebalanceAfterInsert(Node n) {
 		if (n == null)
 			return;
 		int balanceBefore = n.balanceFactor;
 		n.computeBalanceFactor();
 		if (n.balanceFactor == -2) { // right subtree outweights left
-			if (n.rightChild.computeBalanceFactor() == 1) {
+			if (n.rightChild.computeBalanceFactor() == 1) { // right left case
 				rotateRight(n.rightChild);
 				rotateLeft(n);
-			} else if (n.rightChild.computeBalanceFactor() == -1)
+			} else if (n.rightChild.computeBalanceFactor() == -1) //right right case
 				rotateLeft(n);
 		} else if (n.balanceFactor == 2) {
 			if (n.leftChild.computeBalanceFactor() == -1) {
@@ -70,6 +74,10 @@ public class AVLTree<K extends Comparable<K>, V> extends Tree<K, V> {
 				rotateRight(n);
 		}
 		n.computeBalanceFactor();
+		if (balanceBefore != n.balanceFactor)
+			rebalanceAfterDelete(n.parent);
+		else if (n.balanceFactor == 0)
+			rebalanceAfterDelete(n.parent);
 		rebalanceAfterDelete(n.parent);
 
 	}
