@@ -9,7 +9,8 @@ public class Heap<E extends Comparable<E>> {
 
 	public Heap(E[] a) {
 		heapSize = a.length;
-		this.a = Arrays.copyOf(a, heapSize);
+		this.a = a;
+		maxHeapify();
 	}
 
 	public int left(int i) {
@@ -25,7 +26,7 @@ public class Heap<E extends Comparable<E>> {
 	}
 
 	public void maxHeapify() {
-		for (int i = parent(heapSize); i >= 0; i--)
+		for (int i = parent(heapSize-1); i >= 0; i--)
 			maxHeapify(i);
 	}
 
@@ -33,15 +34,16 @@ public class Heap<E extends Comparable<E>> {
 		int l = left(i);
 		int r = right(i);
 		int largest = -1;
-		if (l <= heapSize && a[l].compareTo(a[i]) > 0)
+		if (l < heapSize && a[l].compareTo(a[i]) > 0)
 			largest = l;
 		else
 			largest = i;
-		if (l <= heapSize && a[r].compareTo(a[largest]) > 0)
+		if (l < heapSize && a[r].compareTo(a[largest]) > 0)
 			largest = r;
-		if (largest != i)
+		if (largest != i) {
 			swap(a, i, largest);
-		maxHeapify(largest);
+			maxHeapify(largest);
+		}
 	}
 
 	public E get(int i) {

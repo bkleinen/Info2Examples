@@ -9,7 +9,7 @@ public class Quicksort<E extends Comparable<E>> implements Sorter<E> {
 
 	@Override
 	public void sort(E[] a) {
-		qsort(a, 0, a.length);
+		qsort(a, 0, a.length-1);
 	}
 
 	public void qsort(E[] a, int begin, int end) {
