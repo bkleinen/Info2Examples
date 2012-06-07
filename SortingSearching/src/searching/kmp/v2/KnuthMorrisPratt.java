@@ -11,19 +11,18 @@ public class KnuthMorrisPratt {
 	 */
 	public int[] createFailureFunction(String p) {
 		int[] t = new int[p.length()];
-		t[0] = -1;
-		t[1] = 0;
-		int pos = 2;
+		t[0] = 0;
+		int pos = 1;
 		int cnd = 0;
 		while (pos < t.length) {
 			// substring continues
-			if (p.charAt(pos - 1) == p.charAt(cnd)) {
+			if (p.charAt(pos) == p.charAt(cnd)) {
 				cnd++;
 				t[pos] = cnd;
 				pos++;
 				// it doesn't, but we can fall back
 			} else if (cnd > 0)
-				cnd = t[cnd];
+				cnd = t[cnd - 1];
 			else {
 				t[pos] = 0;
 				pos++;
@@ -36,18 +35,17 @@ public class KnuthMorrisPratt {
 		int m = 0; // beginningOfCurrentMatch
 		int i = 0; // positionOfCurrentMatchInPattern
 		int[] t = createFailureFunction(pattern);
-		while (m < stringToSearch.length()) {
+		while (m + i < stringToSearch.length()) {
 			if (pattern.charAt(i) == stringToSearch.charAt(m + i)) {
 				if (i == pattern.length() - 1)
 					return m;
 				else
 					i++;
 			} else {
-				m = m + i - t[i];
-				if (t[i] > -1)
-					i = t[i];
+				if (i > 0)
+					m = m + i - t[i];
 				else
-					i = 0;
+					m++;
 			}
 		}
 		return -1;

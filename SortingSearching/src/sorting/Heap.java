@@ -38,7 +38,7 @@ public class Heap<E extends Comparable<E>> {
 			largest = l;
 		else
 			largest = i;
-		if (l < heapSize && a[r].compareTo(a[largest]) > 0)
+		if (r < heapSize && a[r].compareTo(a[largest]) > 0)
 			largest = r;
 		if (largest != i) {
 			swap(a, i, largest);

@@ -29,7 +29,7 @@ public class HeapTest {
 
 	@Test
 	public void isMaxHeap() {
-		assertFalse("isMaxHeap", h.isMaxHeap());
+		assertTrue("isMaxHeap", h.isMaxHeap());
 	}
 
 	@Test

@@ -35,16 +35,17 @@ public class KMPFailureFunctionTest {
 	public static Collection<Object[]> data() {
 		return Arrays
 				.asList(new Object[][] {
-						{ "ABAB", new Integer[] { -1, 0, 0, 1 } },
-						{ "ABCDABD", new Integer[] { -1, 0, 0, 0, 0, 1, 2 } },
+						{ "ABAB", new Integer[] { 0, 0, 1, 2 } },
+						{ "ABCDABD", new Integer[] { 0, 0, 0, 0, 1, 2, 0 } },
 						{
 								"PARTICIPATE IN PARACHUTE",
-								new Integer[] { -1, 0, 0, 0, 0, 0, 0, 0, 1, 2,
-										0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0,
+								new Integer[] { 0, 0, 0, 0, 0, 0, 0, 1, 2, 0,
+										0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 0,
 										0 } },
 						{ "ABCABCABCB",
-								new Integer[] { -1, 0, 0, 0, 1, 2, 3, 4, 5, 6 } },
-						{ "AB", new Integer[] { -1, 0 } } });
+			//			   000123456				 
+								new Integer[] { 0, 0, 0, 1, 2, 3, 4, 5, 6, 0 } },
+						{ "AB", new Integer[] { 0, 0 } } });
 	}
 
 	@Test

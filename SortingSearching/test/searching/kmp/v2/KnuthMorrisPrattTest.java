@@ -37,8 +37,9 @@ public class KnuthMorrisPrattTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "AB", "AB", 0 },
-				{ "ABC", "BC", 1 },
-				{ "ABC ABCDAB ABCDABCDABDE", "ABCDABD", 15 } });
+				{ "A", "BC", -1 }, { "ABC", "BC", 1 }, { "ABCD", "BC", 1 },
+				{ "ABC ABCDAB ABCDABCDABDE", "ABCDABD", 15 },
+				{ "ABC ABCDAB ABCDABCABDE", "ABCDABD", -1 } });
 	}
 
 	@Test
