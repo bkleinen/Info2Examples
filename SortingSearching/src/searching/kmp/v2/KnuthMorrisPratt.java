@@ -42,10 +42,12 @@ public class KnuthMorrisPratt {
 				else
 					i++;
 			} else {
-				if (i > 0)
-					m = m + i - t[i];
-				else
+				if (i == 0)
 					m++;
+				else {
+					m = m + i - t[i - 1];
+					i = t[i - 1];
+				}
 			}
 		}
 		return -1;
